@@ -7,8 +7,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	// Move player in 2D space
-	public float maxSpeed = 3.4f;
-	public float jumpHeight = 6.5f;
+	[Range(0, 20)]
+	public float maxSpeed = 5f;
+	[Range(0, 20)]
+	public float jumpHeight = 9f;
+	[Range(0, 5)]
 	public float gravityScale = 1.5f;
 	public Camera mainCamera;
 
@@ -48,7 +51,7 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 		// Movement controls
-		if ((Input.GetKey(moveLeftKey) || Input.GetKey(moveRightKey)) && (isGrounded || r2d.velocity.x > 0.01f))
+		if ((Input.GetKey(moveLeftKey) || Input.GetKey(moveRightKey)))
 		{
 			moveDirection = Input.GetKey(moveLeftKey) ? -1 : 1;
 		}

@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
 	public float gravityScale = 1.5f;
 	public Camera mainCamera;
 
+	private KeyCode moveLeftKey = KeyCode.A;
+	private KeyCode moveRightKey = KeyCode.D;
+	private KeyCode jumpKey = KeyCode.W;
+
 	bool facingRight = true;
 	float moveDirection = 0;
 	bool isGrounded = false;
@@ -35,16 +39,18 @@ public class PlayerController : MonoBehaviour
 		gameObject.layer = 8;
 
 		if (mainCamera)
+		{
 			cameraPos = mainCamera.transform.position;
+		}
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		// Movement controls
-		if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || r2d.velocity.x > 0.01f))
+		if ((Input.GetKey(moveLeftKey) || Input.GetKey(moveRightKey)) && (isGrounded || r2d.velocity.x > 0.01f))
 		{
-			moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
+			moveDirection = Input.GetKey(moveLeftKey) ? -1 : 1;
 		}
 		else
 		{
@@ -70,14 +76,16 @@ public class PlayerController : MonoBehaviour
 		}
 
 		// Jumping
-		if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+		if (Input.GetKeyDown(jumpKey) && isGrounded)
 		{
 			r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
 		}
 
 		// Camera follow
 		if (mainCamera)
+		{
 			mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
+		}
 	}
 
 	void FixedUpdate()

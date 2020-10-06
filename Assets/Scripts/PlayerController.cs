@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,21 +14,27 @@ public class PlayerController : MonoBehaviour
 	public float jumpHeight = 9f;
 	[Range(0, 5)]
 	public float gravityScale = 1.5f;
+	[Range(0.5f, 1)]
+	public float stopDelay = 0.85f;
+
 	public Camera mainCamera;
 
 	private KeyCode moveLeftKey = KeyCode.A;
 	private KeyCode moveRightKey = KeyCode.D;
 	private KeyCode jumpKey = KeyCode.W;
 
-	bool facingRight = true;
-	float moveDirection = 0;
-	bool isGrounded = false;
-	Vector3 cameraPos;
-	Rigidbody2D r2d;
-	Collider2D mainCollider;
+	private bool facingRight = true;
+	private float moveDirection = 0;
+	private bool isGrounded = false;
+
+	private Vector3 cameraPos;
+	private Rigidbody2D r2d;
+	private Collider2D mainCollider;
 	// Check every collider except Player and Ignore Raycast
-	LayerMask layerMask = ~(1 << 2 | 1 << 8);
-	Transform t;
+	private LayerMask layerMask = ~(1 << 2 | 1 << 8);
+	private Transform t;
+	private bool isMoveKeyPressed { get { return Input.GetKey(moveLeftKey) || Input.GetKey(moveRightKey); } }
+
 
 	// Use this for initialization
 	void Start()
@@ -51,7 +58,7 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 		// Movement controls
-		if ((Input.GetKey(moveLeftKey) || Input.GetKey(moveRightKey)))
+		if (isMoveKeyPressed)
 		{
 			moveDirection = Input.GetKey(moveLeftKey) ? -1 : 1;
 		}
@@ -81,7 +88,7 @@ public class PlayerController : MonoBehaviour
 		// Jumping
 		if (Input.GetKeyDown(jumpKey) && isGrounded)
 		{
-			r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+			Jump();
 		}
 
 		// Camera follow
@@ -93,14 +100,46 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		FinalCollisionCheck();
+		var isCollisionDetected = CollisionCheck();
 
+		if (isCollisionDetected || !isMoveKeyPressed)
+		{
+			Stop();
+		}
+		else
+		{
+			Move();
+		}
 	}
 
-	private void FinalCollisionCheck()
+	private void Move()
 	{
-		// Get the velocity
-		Vector2 velocity = new Vector2(r2d.velocity.x * Time.fixedDeltaTime, 0.2f);
+		// Apply movement velocity
+		r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
+	}
+	private void Stop()
+	{
+		r2d.velocity = new Vector2(r2d.velocity.x * stopDelay, r2d.velocity.y);
+
+	}
+	private void Jump()
+	{
+		r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+	}
+
+	private bool CollisionCheck()
+	{
+		// Get the velocity		
+		var velocityX = r2d.velocity.x * Time.fixedDeltaTime;
+
+		// Predict velocity if player is already blocked
+		if(velocityX == 0 && isMoveKeyPressed)
+		{
+			var directionMultiplier = Input.GetKey(moveLeftKey) ? -1 : 1;
+			velocityX = 0.1f * directionMultiplier;
+		}
+
+		Vector2 velocity = new Vector2(velocityX, 0.2f);
 
 		// Get bounds of Collider
 		Bounds colliderBounds = mainCollider.bounds;
@@ -116,19 +155,7 @@ public class PlayerController : MonoBehaviour
 		isGrounded = Physics2D.OverlapCircle(groundCheckPos, 0.23f, layerMask);
 
 		// Check if the body's current velocity will result in a collision
-		if (Physics2D.OverlapArea(topLeft, bottomRight, layerMask))
-		{
-			// If so, stop the movement
-			r2d.velocity = new Vector2(0, r2d.velocity.y);
-		}
-		else
-		{
-			// Apply movement velocity
-			r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
-
-			// Simple debug
-			Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, 0.23f, 0), isGrounded ? Color.green : Color.red);
-		}
+		return Physics2D.OverlapArea(topLeft, bottomRight, layerMask);
 	}
 
 }

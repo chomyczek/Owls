@@ -93,15 +93,42 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		FinalCollisionCheck();
+
+	}
+
+	private void FinalCollisionCheck()
+	{
+		// Get the velocity
+		Vector2 velocity = new Vector2(r2d.velocity.x * Time.fixedDeltaTime, 0.2f);
+
+		// Get bounds of Collider
 		Bounds colliderBounds = mainCollider.bounds;
+		var bottomRight = new Vector2(colliderBounds.max.x, colliderBounds.max.y);
+		var topLeft = new Vector2(colliderBounds.min.x, colliderBounds.min.y);
+
+		// Move collider in direction that we are moving
+		bottomRight += velocity;
+		topLeft += velocity;
+
 		Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, 0.1f, 0);
 		// Check if player is grounded
 		isGrounded = Physics2D.OverlapCircle(groundCheckPos, 0.23f, layerMask);
 
-		// Apply movement velocity
-		r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
+		// Check if the body's current velocity will result in a collision
+		if (Physics2D.OverlapArea(topLeft, bottomRight, layerMask))
+		{
+			// If so, stop the movement
+			r2d.velocity = new Vector2(0, r2d.velocity.y);
+		}
+		else
+		{
+			// Apply movement velocity
+			r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
 
-		// Simple debug
-		Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, 0.23f, 0), isGrounded ? Color.green : Color.red);
+			// Simple debug
+			Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, 0.23f, 0), isGrounded ? Color.green : Color.red);
+		}
 	}
+
 }

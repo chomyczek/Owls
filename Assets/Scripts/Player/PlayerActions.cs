@@ -25,7 +25,14 @@ public class PlayerActions
 	{
 		if (player.Utilities.IsGrounded())
 		{
+			player.Stats.JumpsLeft = player.Stats.MaxJumpCount;
+		}
+
+		if (player.Stats.JumpsLeft > 0)
+		{
+			player.Components.RigidBody.velocity = new Vector2(player.Components.RigidBody.velocity.x, 0);
 			player.Components.RigidBody.AddForce(new Vector2(0, player.Stats.JumpForce), ForceMode2D.Impulse);
+			player.Stats.JumpsLeft--;
 		}
 	}
 }

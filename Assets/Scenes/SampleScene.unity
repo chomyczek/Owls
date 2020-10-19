@@ -2148,6 +2148,11 @@ PrefabInstance:
       propertyPath: components.camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 843358471313934899, guid: 45d2df54684dcfd4a9e81fd04a200830,
+        type: 3}
+      propertyPath: stats.maxJumpCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 843358471313934900, guid: 45d2df54684dcfd4a9e81fd04a200830,
         type: 3}
       propertyPath: m_Name

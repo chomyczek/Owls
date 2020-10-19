@@ -7,10 +7,11 @@ using UnityEngine;
 public class PlayerStats
 {
 	public Vector2 Direction { get; set; }
-
+	public int JumpsLeft { get; set; }
 	public float Speed { get; set; }
 	public float WalkSpeed { get => walkSpeed; }
 	public float JumpForce { get => jumpForce; }
+	public int MaxJumpCount { get => maxJumpCount; }
 
 	[SerializeField]
 	private float walkSpeed;
@@ -20,5 +21,8 @@ public class PlayerStats
 
 	[SerializeField]
 	private float jumpForce;
+
+	[SerializeField]
+	private int maxJumpCount;
 
 }

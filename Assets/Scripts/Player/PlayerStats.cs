@@ -20,4 +20,5 @@ public class PlayerStats
 
 	[SerializeField]
 	private float jumpForce;
+
 }

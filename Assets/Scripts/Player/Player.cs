@@ -6,8 +6,9 @@ public class Player : MonoBehaviour
 {	public PlayerComponents Components { get => components; }
 	public PlayerStats Stats { get => stats; }
 	public PlayerActions Actions { get => actions; }
+	public PlayerUtilities Utilities { get => utilities; }
 
-    [SerializeField]
+	[SerializeField]
     private PlayerComponents components;
     [SerializeField]
     private PlayerStats stats;
@@ -32,7 +33,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        utilities.HandleInput();
+        Utilities.HandleInput();
+        Utilities.HandleAir();
     }
 
 	private void FixedUpdate()

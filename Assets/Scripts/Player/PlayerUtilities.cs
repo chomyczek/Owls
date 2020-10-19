@@ -36,4 +36,28 @@ public class PlayerUtilities
 			}
 		}
 	}
+
+	public bool IsGrounded()
+	{
+		RaycastHit2D hit = Physics2D.BoxCast(player.Components.Collider.bounds.center, player.Components.Collider.bounds.size, 0, Vector2.down, 0.1f, player.Components.GroundLayer);
+		return hit.collider != null;
+	}
+
+	public void HandleAir()
+	{
+		if (IsFalling())
+		{
+
+		}
+	}
+
+	private bool IsFalling()
+	{
+		if(player.Components.RigidBody.velocity.y < 0 && !IsGrounded())
+		{
+			return true;
+		}
+
+		return false;
+	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class Player : MonoBehaviour
 {	public PlayerComponents Components { get => components; }
 	public PlayerStats Stats { get => stats; }
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
         utilities = new PlayerUtilities(this);
 
         stats.Speed = stats.WalkSpeed;
+
 	}
 
 	// Start is called before the first frame update
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     {
         Utilities.HandleInput();
         Utilities.HandleAir();
+        Utilities.HandleCamera();
     }
 
 	private void FixedUpdate()

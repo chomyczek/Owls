@@ -15,7 +15,12 @@ public class PlayerComponents
 	[SerializeField]
 	private Collider2D collider;
 
+	[SerializeField]
+	private Camera camera;
+
+
 	public Rigidbody2D RigidBody { get => rigidbody; }
 	public LayerMask GroundLayer { get => groundLayer; }
 	public Collider2D Collider { get => collider; }
+	public Camera Camera { get => camera; }
 }

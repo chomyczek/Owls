@@ -37,6 +37,11 @@ public class PlayerUtilities
 		}
 	}
 
+	public void HandleCamera()
+	{
+		player.Components.Camera.transform.position = new Vector3(player.Components.RigidBody.position.x, player.Components.RigidBody.position.y, -100);//player.transform.position
+	}
+
 	public bool IsGrounded()
 	{
 		RaycastHit2D hit = Physics2D.BoxCast(player.Components.Collider.bounds.center, player.Components.Collider.bounds.size, 0, Vector2.down, 0.1f, player.Components.GroundLayer);

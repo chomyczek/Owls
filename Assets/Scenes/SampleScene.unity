@@ -193,8 +193,9 @@ MonoBehaviour:
   stats:
     walkSpeed: 100
     runSpeed: 0
---- !u!61 &319424374
-BoxCollider2D:
+    jumpForce: 5
+--- !u!70 &319424374
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -206,19 +207,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.034, y: -0.004000008}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0954688, y: 1.7192011}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.045345783, y: -0.070537806}
+  m_Size: {x: 1.1146894, y: 1.7658429}
+  m_Direction: 0
 --- !u!1 &504183584
 GameObject:
   m_ObjectHideFlags: 0

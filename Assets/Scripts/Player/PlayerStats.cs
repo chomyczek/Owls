@@ -24,5 +24,4 @@ public class PlayerStats
 
 	[SerializeField]
 	private int maxJumpCount;
-
 }

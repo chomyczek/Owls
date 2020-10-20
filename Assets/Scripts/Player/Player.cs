@@ -4,12 +4,13 @@ using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 public class Player : MonoBehaviour
-{	public PlayerComponents Components { get => components; }
+{	
+    public PlayerComponents Components { get => components; }
 	public PlayerStats Stats { get => stats; }
 	public PlayerActions Actions { get => actions; }
 	public PlayerUtilities Utilities { get => utilities; }
 
-	[SerializeField]
+    [SerializeField]
     private PlayerComponents components;
     [SerializeField]
     private PlayerStats stats;

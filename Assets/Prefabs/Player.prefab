@@ -52,10 +52,12 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
     collider: {fileID: 843358471313934896}
+    camera: {fileID: 0}
   stats:
     walkSpeed: 150
     runSpeed: 0
     jumpForce: 6
+    maxJumpCount: 2
 --- !u!50 &843358471313934898
 Rigidbody2D:
   serializedVersion: 4

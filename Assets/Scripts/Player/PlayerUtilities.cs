@@ -44,13 +44,20 @@ public class PlayerUtilities
 
 	public bool IsGrounded()
 	{
-		RaycastHit2D hit = Physics2D.BoxCast(player.Components.Collider.bounds.center, player.Components.Collider.bounds.size, 0, Vector2.down, 0.1f, player.Components.GroundLayer);
+		RaycastHit2D hit = Physics2D.BoxCast(
+			player.Components.Collider.bounds.center, 
+			player.Components.Collider.bounds.size, 
+			0, 
+			Vector2.down, 
+			0.1f, 
+			player.Components.GroundLayer);
+
 		return hit.collider != null;
 	}
 
 	public bool IsStickToWall()
 	{
-		var capsuleSize = new Vector2(player.Components.Collider.bounds.size.x, player.Components.Collider.bounds.size.y - 0.2f);
+		var capsuleSize = new Vector2(player.Components.Collider.bounds.size.x, player.Components.Collider.bounds.size.y * 0.85f);
 		RaycastHit2D hit = Physics2D.CapsuleCast(
 			player.Components.Collider.bounds.center,
 			capsuleSize,

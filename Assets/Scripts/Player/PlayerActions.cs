@@ -19,7 +19,8 @@ public class PlayerActions
 		}
 		else
 		{
-			player.Components.RigidBody.velocity = new Vector2(player.Stats.Direction.x * player.Stats.Speed * Time.deltaTime, player.Components.RigidBody.velocity.y);
+			player.Components.RigidBody.velocity = 
+				new Vector2(player.Stats.Direction.x * player.Stats.Speed * Time.deltaTime, player.Components.RigidBody.velocity.y);
 		}
 
 		if(player.Stats.Direction.x != 0)

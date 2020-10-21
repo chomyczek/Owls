@@ -13,7 +13,15 @@ public class PlayerActions
 
 	public void Move(Transform transform)
 	{
-		player.Components.RigidBody.velocity = new Vector2(player.Stats.Direction.x * player.Stats.Speed * Time.deltaTime, player.Components.RigidBody.velocity.y);
+		if (player.Utilities.IsStickToWall())
+		{
+			player.Components.RigidBody.velocity = new Vector2(0, player.Components.RigidBody.velocity.y);
+		}
+		else
+		{
+			player.Components.RigidBody.velocity = 
+				new Vector2(player.Stats.Direction.x * player.Stats.Speed * Time.deltaTime, player.Components.RigidBody.velocity.y);
+		}
 
 		if(player.Stats.Direction.x != 0)
 		{

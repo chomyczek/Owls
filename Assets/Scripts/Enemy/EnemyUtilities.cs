@@ -42,8 +42,17 @@ public class EnemyUtilities
 
 	public bool DetectWall()
 	{
-		return false;
-		throw new NotImplementedException();
+		var capsuleSize = new Vector2(enemy.Components.Collider.bounds.size.x, enemy.Components.Collider.bounds.size.y * 0.85f);
+		RaycastHit2D hit = Physics2D.CapsuleCast(
+			enemy.Components.Collider.bounds.center,
+			capsuleSize,
+			CapsuleDirection2D.Vertical,
+			0,
+			new Vector2(enemy.transform.localScale.x, 0),
+			0.1f,
+			enemy.Components.GroundLayer);
+
+		return hit.collider != null;
 
 	}
 

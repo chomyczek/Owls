@@ -25,6 +25,23 @@ public class EnemyUtilities
 		}
 	}
 
+	public void HandlePlayerCollision()
+	{
+		Player player;
+		RaycastHit2D hit = Physics2D.BoxCast(
+			enemy.Components.Collider.bounds.center,
+			enemy.Components.Collider.bounds.size,
+			0,
+			Vector2.zero,
+			0.1f,
+			Consts.PlayerLayer);
+
+		if (hit.collider != null && hit.transform.gameObject.TryGetComponent(out player))
+		{
+			player.Utilities.TakeDamage(enemy.Stats.Damage);
+		}
+	}
+
 	public bool DetectGap()
 	{
 		var ahead = enemy.Stats.Direction.x < 0 ? enemy.Components.Collider.bounds.min.x : enemy.Components.Collider.bounds.max.x;

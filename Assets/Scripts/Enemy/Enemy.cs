@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+        Utilities.HandlePlayerCollision();
     }
 
 	private void FixedUpdate()

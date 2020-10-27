@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +42,22 @@ public class PlayerUtilities
 	{
 		player.Components.Camera.transform.position = new Vector3(player.Components.RigidBody.position.x, player.Components.RigidBody.position.y, -100);
 	}
+
+	public void TakeDamage(int damage)
+	{
+		player.Stats.Hp -= damage;
+
+		if(player.Stats.Hp > 0)
+		{
+			Debug.Log(string.Format("{0}/{1}", player.Stats.Hp, player.Stats.MaxHp));
+			//change layer
+		}
+		else
+		{
+			player.Actions.Die();
+		}
+
+ 	}
 
 	public bool IsGrounded()
 	{

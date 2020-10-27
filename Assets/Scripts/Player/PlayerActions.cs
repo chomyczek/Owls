@@ -43,4 +43,9 @@ public class PlayerActions
 			player.Stats.JumpsLeft--;
 		}
 	}
+
+	public void Die()
+	{
+		Application.LoadLevel(Application.loadedLevel);
+	}
 }

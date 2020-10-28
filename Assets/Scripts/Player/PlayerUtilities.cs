@@ -1,15 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerUtilities
 {
 	private Player player;
+	private Tools tools;
 	private List<Command> commands = new List<Command>();
 
 	public PlayerUtilities(Player player)
 	{
 		this.player = player;
+		tools = new Tools();
 
 		commands.Add(new JumpCommand(player, KeyCode.Space));
 	}
@@ -40,6 +43,34 @@ public class PlayerUtilities
 	public void HandleCamera()
 	{
 		player.Components.Camera.transform.position = new Vector3(player.Components.RigidBody.position.x, player.Components.RigidBody.position.y, -100);
+	}
+
+	public void TakeDamage(int damage)
+	{		
+		player.Stats.Hp -= damage;
+		Debug.Log(string.Format("{0}/{1}", player.Stats.Hp, player.Stats.MaxHp));
+
+		if (player.Stats.Hp > 0)
+		{
+			DisableDamage();
+		}
+		else
+		{
+			player.Actions.Die();
+		}
+ 	}
+
+	public void HandleDamageDisabeDelay()
+	{
+		if(player.gameObject.layer != tools.LayerMaskToLayer(player.Components.DamageDelayLayer))
+		{
+			return;
+		}
+
+		if(player.Stats.StartDisableDamageTime + player.Stats.DisableDamageDelay <= Time.fixedTime)
+		{
+			player.gameObject.layer = tools.LayerMaskToLayer(player.Components.PlayerLayer);
+		}
 	}
 
 	public bool IsGrounded()
@@ -86,5 +117,11 @@ public class PlayerUtilities
 		}
 
 		return false;
+	}
+
+	private void DisableDamage()
+	{
+		player.gameObject.layer = tools.LayerMaskToLayer(player.Components.DamageDelayLayer);
+		player.Stats.StartDisableDamageTime = Time.fixedTime;
 	}
 }

@@ -12,16 +12,15 @@ public class Enemy : MonoBehaviour
     private EnemyActions actions;
 
     public EnemyActions Actions { get => actions; }
-	public EnemyStats Stats { get => stats; }
-	public EnemyUtilities Utilities { get => utilities; }
+    public EnemyStats Stats { get => stats; }
+    public EnemyUtilities Utilities { get => utilities; }
     public EnemyComponents Components { get => components; }
 
     private void Awake()
     {
         actions = new EnemyActions(this);
         utilities = new EnemyUtilities(this);
-
-	}
+    }
 
 	// Start is called before the first frame update
 	private void Start()
@@ -35,8 +34,8 @@ public class Enemy : MonoBehaviour
         Utilities.HandlePlayerCollision();
     }
 
-	private void FixedUpdate()
-	{
+    private void FixedUpdate()
+    {
         Utilities.HandleMove();
-	}
+    }
 }

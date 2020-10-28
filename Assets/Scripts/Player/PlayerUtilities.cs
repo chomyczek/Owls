@@ -46,6 +46,7 @@ public class PlayerUtilities
 	}
 
 	public void TakeDamage(int damage)
+	{		
 		player.Stats.Hp -= damage;
 		Debug.Log(string.Format("{0}/{1}", player.Stats.Hp, player.Stats.MaxHp));
 

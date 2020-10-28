@@ -10,11 +10,13 @@ public class PlayerStats
 	public int JumpsLeft { get; set; }
 	public float Speed { get; set; }
 	public int Hp { get; set; }
-
+	public float StartDisableDamageTime { get; set; }
+	
 	public float WalkSpeed { get => walkSpeed; }
 	public float JumpForce { get => jumpForce; }
 	public int MaxJumpCount { get => maxJumpCount; }
 	public int MaxHp { get => maxHp; }
+	public float DisableDamageDelay { get => disableDamageDelay;}
 
 	[SerializeField]
 	private float walkSpeed;
@@ -30,4 +32,7 @@ public class PlayerStats
 
 	[SerializeField]
 	private int maxHp;
+
+	[SerializeField]
+	private float disableDamageDelay;
 }

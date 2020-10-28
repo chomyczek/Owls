@@ -51,6 +51,12 @@ MonoBehaviour:
     groundLayer:
       serializedVersion: 2
       m_Bits: 256
+    playerLayer:
+      serializedVersion: 2
+      m_Bits: 1024
+    damageDelayLayer:
+      serializedVersion: 2
+      m_Bits: 2048
     collider: {fileID: 843358471313934896}
     camera: {fileID: 0}
   stats:
@@ -59,6 +65,7 @@ MonoBehaviour:
     jumpForce: 6
     maxJumpCount: 2
     maxHp: 3
+    damageDisableDelay: 2
 --- !u!50 &843358471313934898
 Rigidbody2D:
   serializedVersion: 4

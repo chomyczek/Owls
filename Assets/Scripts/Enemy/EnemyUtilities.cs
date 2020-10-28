@@ -27,16 +27,15 @@ public class EnemyUtilities
 
 	public void HandlePlayerCollision()
 	{
-		Player player;
 		RaycastHit2D hit = Physics2D.BoxCast(
 			enemy.Components.Collider.bounds.center,
 			enemy.Components.Collider.bounds.size,
 			0,
 			Vector2.zero,
 			0.1f,
-			Consts.PlayerLayer);
+			enemy.Components.PlayerLayer);
 
-		if (hit.collider != null && hit.transform.gameObject.TryGetComponent(out player))
+		if (hit.collider != null && hit.collider.TryGetComponent(out Player player))
 		{
 			player.Utilities.TakeDamage(enemy.Stats.Damage);
 		}

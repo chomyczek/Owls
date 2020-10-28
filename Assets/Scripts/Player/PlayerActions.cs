@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerActions
 {
@@ -19,7 +20,7 @@ public class PlayerActions
 		}
 		else
 		{
-			player.Components.RigidBody.velocity = 
+			player.Components.RigidBody.velocity =
 				new Vector2(player.Stats.Direction.x * player.Stats.Speed * Time.deltaTime, player.Components.RigidBody.velocity.y);
 		}
 
@@ -46,6 +47,6 @@ public class PlayerActions
 
 	public void Die()
 	{
-		Application.LoadLevel(Application.loadedLevel);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }

@@ -13,6 +13,12 @@ public class PlayerComponents
 	private LayerMask groundLayer;
 
 	[SerializeField]
+	private LayerMask playerLayer;
+
+	[SerializeField]
+	private LayerMask damageDelayLayer;
+
+	[SerializeField]
 	private Collider2D collider;
 
 	[SerializeField]
@@ -21,6 +27,8 @@ public class PlayerComponents
 
 	public Rigidbody2D RigidBody { get => rigidbody; }
 	public LayerMask GroundLayer { get => groundLayer; }
+	public LayerMask PlayerLayer { get => playerLayer; }
 	public Collider2D Collider { get => collider; }
 	public Camera Camera { get => camera; }
+	public LayerMask DamageDelayLayer { get => damageDelayLayer; }
 }

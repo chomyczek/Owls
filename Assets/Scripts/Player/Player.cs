@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         Utilities.HandleInput();
         Utilities.HandleAir();
         Utilities.HandleCamera();
+        Utilities.HandleDamageDisabeDelay();
     }
 
 	private void FixedUpdate()

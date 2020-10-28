@@ -263,6 +263,9 @@ MonoBehaviour:
     groundLayer:
       serializedVersion: 2
       m_Bits: 256
+    playerLayer:
+      serializedVersion: 2
+      m_Bits: 1024
     collider: {fileID: 35830466}
 --- !u!1 &504183584
 GameObject:
@@ -2399,10 +2402,25 @@ PrefabInstance:
       propertyPath: components.camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 843358471313934899, guid: 45d2df54684dcfd4a9e81fd04a200830,
+        type: 3}
+      propertyPath: components.damageDelayLayer.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 843358471313934899, guid: 45d2df54684dcfd4a9e81fd04a200830,
+        type: 3}
+      propertyPath: components.groundLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 843358471313934900, guid: 45d2df54684dcfd4a9e81fd04a200830,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 843358471313934900, guid: 45d2df54684dcfd4a9e81fd04a200830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 843358471313934901, guid: 45d2df54684dcfd4a9e81fd04a200830,
         type: 3}

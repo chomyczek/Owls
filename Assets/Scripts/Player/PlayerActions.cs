@@ -49,4 +49,9 @@ public class PlayerActions
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
+
+	public void Throw()
+	{
+		//var projectile = GameObject.Instantiate(player.References.Shuriken, )
+	}
 }

@@ -9,11 +9,13 @@ public class Player : MonoBehaviour
 	public PlayerStats Stats { get => stats; }
 	public PlayerActions Actions { get => actions; }
 	public PlayerUtilities Utilities { get => utilities; }
+	public PlayerReferences References { get => references; }
 
-    [SerializeField]
+	[SerializeField]
     private PlayerComponents components;
     [SerializeField]
     private PlayerStats stats;
+    [SerializeField]
     private PlayerReferences references;
     private PlayerUtilities utilities;
     private PlayerActions actions;

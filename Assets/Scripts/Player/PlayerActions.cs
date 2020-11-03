@@ -58,13 +58,12 @@ public class PlayerActions
 		if (player.Stats.CanThrow)
 		{
 			player.StartCoroutine(player.Utilities.CorutineThrowCooldown());			
-			var velocity = new Vector2(8, 0);//move to projectile
 			var projectile = 
 				GameObject.Instantiate(
 					player.References.Shuriken, 
 					(Vector2)player.transform.position + throwOffset * player.transform.localScale.x, 
 					Quaternion.identity);
-			projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * player.transform.localScale.x, velocity.y);
+			projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(player.transform.localScale.x, 0);
 		}
 	}
 }

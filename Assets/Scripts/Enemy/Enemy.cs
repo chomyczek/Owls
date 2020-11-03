@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     {
         actions = new EnemyActions(this);
         utilities = new EnemyUtilities(this);
+        stats.Hp = stats.MaxHp;
     }
 
 	// Start is called before the first frame update

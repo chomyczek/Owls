@@ -15,8 +15,13 @@ public class EnemyStats
 	[SerializeField]
 	private int damage;
 
+	[SerializeField]
+	private int maxHp;
+
 	public EnemyEnums.Move MoveStyle { get => moveStyle; }
 	public Vector2 Direction { get; set; }
+	public int Hp { get; set; }
 	public float Speed { get => speed; }
 	public int Damage { get => damage; }
+	public int MaxHp { get => maxHp; }
 }

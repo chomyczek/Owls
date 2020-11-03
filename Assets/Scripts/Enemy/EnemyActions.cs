@@ -41,4 +41,9 @@ public class EnemyActions
 
 		enemy.Actions.Move(enemy.transform);
 	}
+
+	public void Die()
+	{
+		Object.Destroy(enemy.gameObject);
+	}
 }

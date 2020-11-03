@@ -50,6 +50,7 @@ MonoBehaviour:
     moveStyle: 1
     speed: 100
     damage: 1
+    maxHp: 1
   components:
     rigidbody: {fileID: 658324130925510867}
     groundLayer:

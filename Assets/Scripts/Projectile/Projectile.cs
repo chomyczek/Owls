@@ -17,7 +17,13 @@ public class Projectile : MonoBehaviour
     private float speed;
 
     [SerializeField]
+    private int damage;
+
+    [SerializeField]
     private LayerMask groundLayer;
+
+    [SerializeField]
+    private LayerMask damageableLayer;
 
     private Rigidbody2D rigidbody;
     private Collider2D collider;
@@ -35,6 +41,7 @@ public class Projectile : MonoBehaviour
     {
         var direction = Mathf.Sign(rigidbody.velocity.x);
         transform.Rotate(0, 0, Time.deltaTime * rotateSpeed * -direction);
+        HandleDamageableCollision();
         HandleWall();
     }
 
@@ -45,13 +52,22 @@ public class Projectile : MonoBehaviour
 
     private void HandleWall()
 	{
-		if (DetectCollider(groundLayer))
+		if (DetectCollider(groundLayer) != null)
 		{
             Destroy(gameObject);
 		}
 	}
 
-    public bool DetectCollider(LayerMask colliderLayer)
+    private void HandleDamageableCollision()
+	{
+        if (DetectCollider(damageableLayer) != null && DetectCollider(damageableLayer).TryGetComponent(out Enemy enemy))
+        {
+            enemy.Utilities.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+    }
+
+    public Collider2D DetectCollider(LayerMask colliderLayer)
     {
         var capsuleSize = new Vector2(collider.bounds.size.x, collider.bounds.size.y);
         RaycastHit2D hit = Physics2D.CapsuleCast(
@@ -63,7 +79,7 @@ public class Projectile : MonoBehaviour
             0.1f,
             colliderLayer);
 
-        return hit.collider != null;
+        return hit.collider;
 
     }
 

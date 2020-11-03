@@ -99,9 +99,13 @@ MonoBehaviour:
   selfDestroyTime: 5
   rotateSpeed: 540
   speed: 8
+  damage: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  damageableLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!50 &4958183798360493469
 Rigidbody2D:
   serializedVersion: 4

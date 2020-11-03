@@ -89,4 +89,15 @@ public class EnemyUtilities
 
 		return hit.collider != null;
 	}
+
+	public void TakeDamage(int damage)
+	{
+		enemy.Stats.Hp -= damage;
+		Debug.Log(string.Format("enemy hp: {0}/{1}", enemy.Stats.Hp, enemy.Stats.MaxHp));
+
+		if (enemy.Stats.Hp <= 0)
+		{
+			enemy.Actions.Die();
+		}
+	}
 }

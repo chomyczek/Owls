@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 	public PlayerUtilities Utilities { get => utilities; }
 	public PlayerReferences References { get => references; }
 
-	[SerializeField]
+   [SerializeField]
     private PlayerComponents components;
     [SerializeField]
     private PlayerStats stats;

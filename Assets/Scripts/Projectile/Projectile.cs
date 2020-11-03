@@ -80,7 +80,6 @@ public class Projectile : MonoBehaviour
             colliderLayer);
 
         return hit.collider;
-
     }
 
 }

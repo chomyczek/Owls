@@ -15,6 +15,7 @@ public class PlayerUtilities
 		tools = new Tools();
 
 		commands.Add(new JumpCommand(player, KeyCode.Space));
+		commands.Add(new ThrowCommand(player, KeyCode.LeftShift));
 	}
 
 	public void HandleInput()
@@ -123,5 +124,12 @@ public class PlayerUtilities
 	{
 		player.gameObject.layer = tools.LayerMaskToLayer(player.Components.DamageDelayLayer);
 		player.Stats.StartDisableDamageTime = Time.fixedTime;
+	}
+
+	public IEnumerator CorutineThrowCooldown()
+	{
+		player.Stats.CanThrow = false;
+		yield return new WaitForSeconds(player.Stats.ThrowCooldown);
+		player.Stats.CanThrow = true;
 	}
 }

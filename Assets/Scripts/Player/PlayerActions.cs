@@ -7,9 +7,12 @@ public class PlayerActions
 {
 	private Player player;
 
+	private Vector2 throwOffset;
+
 	public PlayerActions(Player player)
 	{
 		this.player = player;
+		this.throwOffset = new Vector2(player.Components.Collider.bounds.size.x / 2, 0);
 	}
 
 	public void Move(Transform transform)
@@ -52,6 +55,16 @@ public class PlayerActions
 
 	public void Throw()
 	{
-		//var projectile = GameObject.Instantiate(player.References.Shuriken, )
+		if (player.Stats.CanThrow)
+		{
+			player.StartCoroutine(player.Utilities.CorutineThrowCooldown());			
+			var velocity = new Vector2(8, 0);//move to projectile
+			var projectile = 
+				GameObject.Instantiate(
+					player.References.Shuriken, 
+					(Vector2)player.transform.position + throwOffset * player.transform.localScale.x, 
+					Quaternion.identity);
+			projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * player.transform.localScale.x, velocity.y);
+		}
 	}
 }

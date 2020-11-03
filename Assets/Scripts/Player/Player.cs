@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
         stats.Speed = stats.WalkSpeed;
         stats.JumpsLeft = stats.MaxJumpCount;
         stats.Hp = stats.MaxHp;
+        stats.CanThrow = true;
     }
 
 	// Start is called before the first frame update

@@ -66,6 +66,10 @@ MonoBehaviour:
     maxJumpCount: 2
     maxHp: 3
     disableDamageDelay: 2
+    throwCooldown: 0.5
+  references:
+    shuriken: {fileID: 8171038137869347826, guid: 8cd19f389f6a2c646ad887200a41a25e,
+      type: 3}
 --- !u!50 &843358471313934898
 Rigidbody2D:
   serializedVersion: 4

@@ -2394,12 +2394,6 @@ PrefabInstance:
       propertyPath: components.camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 843358471313934899, guid: 45d2df54684dcfd4a9e81fd04a200830,
-        type: 3}
-      propertyPath: references.shuriken
-      value: 
-      objectReference: {fileID: 8171038137869347826, guid: 8cd19f389f6a2c646ad887200a41a25e,
-        type: 3}
     - target: {fileID: 843358471313934900, guid: 45d2df54684dcfd4a9e81fd04a200830,
         type: 3}
       propertyPath: m_Name
